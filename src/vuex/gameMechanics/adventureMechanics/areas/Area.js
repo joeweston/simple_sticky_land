@@ -2,13 +2,14 @@ import helperFunctions from '@/vuex/gameMechanics/helperFunctions.js';
 const weightedRandom =  x => helperFunctions.weightedRandom(x);
 const minMaxRandom =  (x,y) => helperFunctions.minMaxRandom(x,y);
 export default class Area{
-  constructor(player, ascii, positions, enemyPool){
+  constructor(player, ascii, positions, enemyPool, nextArea=false){
     this.ascii = ascii;
     this.positions = positions;
     this.player = player;
+    this.nextArea = nextArea;
     this.populateArea(enemyPool);
     this.renderEnemies();
-    this.renderPlayer()
+    this.renderPlayer();
   }
   populateArea(enemyPool){
     this.enemies = enemyPool.map((val, index, arr)=>{

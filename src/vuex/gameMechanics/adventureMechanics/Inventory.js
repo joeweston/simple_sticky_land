@@ -8,11 +8,12 @@ export default class Inventory{
       brokenBottle: {  owned: false, name: "broken bottle", stats: { attack:{base: 15} } }
     }
     this.armours = {
-      none: {owned: true, stats:{}},
-      woolenJumper: {owned: false},
+      none: {owned: true, name: "none", stats:{}},
+      cowSkin: { owned: false, name: "cow skin", stats: { armour:{flat: 1} } },
     }
     this.passives = {
-
+      pigTrotters: {owned: false, name: "pig trotters", stats: {hp: {base: 13 } } },
+      pieceOfCandy: {owned: false, name: "piece of candy", stats: {hp: {multiplier: 0.1 } } },
     }
     this.key = {
 

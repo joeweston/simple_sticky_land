@@ -4,18 +4,25 @@ export default class Adventure{
   constructor(area){ 
     this.area = area;
     this.player = this.area.player;
+    this.player.position = 0;
     this.fighting = false;
     this.stillAdventuring = true;
     this.alive = true;
     this.itemDrops = [];
     this.findCurrentEnemy();
   }
+  resetAdventure(){
+    this.area = this.area.nextArea;
+    this.player.position = 0;
+    this.findCurrentEnemy();
+    console.log(this)
+  }
   playerMove(){
     this.area.player.position += 1;
     this.area.updateAscii()
   }
   advanceFight(){
-    this.currentEnemy.hp -= this.player.attack;
+    this.currentEnemy.hp -= this.player.attack.value;
     if (this.currentEnemy.hp <= 0 ){
       this.fighting = false;
       let itemDrop = this.getItemDrop();
@@ -31,8 +38,7 @@ export default class Adventure{
     }
     this.player.hp.current -= (this.currentEnemy.attack - this.player.armour.value);
     if ( this.player.hp.current <= 0){
-       this.stillAdventuring = false;
-       this.alive = false;
+      this.stillAdventuring = false;
       return;
     }
   }
@@ -49,11 +55,18 @@ export default class Adventure{
       return this;
     }
     if (this.player.position +2 ===  this.area.positions.length) {
-        this.stillAdventuring = false;
-        for (let item of this.itemDrops){
-          this.player.obtainItem(item);
-        }
-        return this;
+      if (this.area.nextArea){  //another area after so load new
+        //this.area = this.area.nextArea;
+        //this.player.position = 0;
+        this.resetAdventure();
+        return;
+      }
+
+      this.stillAdventuring = false;
+      for (let item of this.itemDrops){
+        this.player.obtainItem(item);
+      }
+      return this;
     }
     this.playerMove();
     if (this.currentEnemy && this.area.enemies[0][1] === this.player.position + 3){

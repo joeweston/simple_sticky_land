@@ -7,6 +7,10 @@ export default class Enemy{
     this.sprite = sprite;
     this.itemDrop = itemDrop;
     this.itemDropPercent = itemDropPercent;
+    this.name = splitCamelCaseToString(this.constructor.name)
   }
 
+}
+function splitCamelCaseToString(s) {
+    return s.split(/(?=[A-Z])/).join(' ');
 }

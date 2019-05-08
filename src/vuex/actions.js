@@ -7,7 +7,10 @@ export default {
   load({commit}){
     commit('load');
   },
-  goAdventure({commit}){
-    commit('goAdventure');
-  }
+  goAdventure({commit}, areaName){
+    commit('goAdventure', areaName);
+  },
+  initialisePlayer({commit}){
+    commit('initialisePlayer');
+  },
 }

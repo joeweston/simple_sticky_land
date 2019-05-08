@@ -1,20 +1,27 @@
 import Area from './Area.js';
+import Cow from '../enemies/Cow.js'
+import Pig from '../enemies/Pig.js'
 import Man from '../enemies/Man.js'
 import Bloke from '../enemies/Bloke.js'
 import SmallChest from '../enemies/SmallChest.js'
+import Gregor from '../enemies/Gregor.js'
 export default class Fields extends Area{
   constructor(player){
     super(
       player,
-      [
-        "                                                            ",
-        "                                                            ",
-        "                                                            ",
-        "                                                            ",
-        "                                                            ",
-        "                                                            ",
-        "____________________________________________________________",
-        ],
+[ '                                                            ',
+  '                                                            ',
+  '                          V        ___                      ',
+  '        ,--,            V         (   \\                     ',
+  '       (    )       _____       (______)                    ',
+  '      (_______)    (     \\_____               ,--,          ',
+  '                  (            ),__          (    )         ',
+  "                 (_________________)        '      ),       ",
+  '                                           (        _)      ',
+  '                                             \\\\ ___)        ',
+  '                                              \\  |          ',
+  '                                               | |          ',
+  '_______________________________________________| |__________' ],
       [
         [ 0, 0],[ 1, 0],[ 2, 0],[ 3, 0],[ 4, 0],[ 5, 0],[ 6, 0],[ 7, 0],[ 8, 0],[ 9 ,0],
         [10, 0],[11, 0],[12, 0],[13, 0],[14, 0],[15, 0],[16, 0],[17, 0],[18, 0],[19 ,0],
@@ -23,16 +30,10 @@ export default class Fields extends Area{
         [40, 0],[41, 0],[42, 0],[43, 0],[44, 0],[45, 0],[46, 0],[47, 0],[48, 0],[49 ,0],
         [50, 0],[51, 0],[52, 0],[53, 0],[54, 0],[55, 0],[56, 0],[57, 0],[58, 0],[59 ,0],
       ],
-      /*[
-        {common: "man", uncommon: "bloke", rare: "man", position: [7, 11]},
-        {common: "man", uncommon: "bloke", rare: "man", position: [33, 44]},
-        {common: "man", uncommon: "bloke", rare: "smallChest", position: [50, 55]},
-      ]
-      */
       [
-        {common: Man, uncommon: Bloke, rare: Man, position: [20, 25]},
-        {common: Man, uncommon: Bloke, rare: Man, position: [33, 44]},
-        {common: Man, uncommon: Bloke, rare: SmallChest, position: [50, 55]},
+        {common: Cow, uncommon: Man, rare: Pig, position: [15, 20]},
+        {common: Man, uncommon: Bloke, rare: Gregor, position: [32, 35]},
+        {common: Pig, uncommon: Cow, rare: SmallChest, position: [45, 47]},
       ]
       );
   }

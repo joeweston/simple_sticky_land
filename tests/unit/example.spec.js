@@ -18,17 +18,7 @@ import Man from '@/vuex/gameMechanics/adventureMechanics/enemies/Man.js'
 import Fields from '@/vuex/gameMechanics/adventureMechanics/areas/Fields.js'
 import Adventure from '@/vuex/gameMechanics/adventureMechanics/Adventure.js'
 
-describe("Man is created properly", ()=>{
-  let man;
-  beforeAll(() => {
-    man = new Man();
-  })
-  it('has hp value bestween 9 and 14 not inclusive', ()=>{
-    expect(man.hp).toBeGreaterThan(9);
-    expect(man.hp).toBeLessThan(14);
 
-  })
-})
 describe("Fields is created properly", ()=>{
   let fields;
   beforeAll(() => {

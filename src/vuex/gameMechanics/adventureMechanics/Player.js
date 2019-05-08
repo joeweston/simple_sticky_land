@@ -1,7 +1,8 @@
 import Inventory from "./Inventory.js";
 export default class Player {
-  constructor(){
-    this.inventory = new Inventory();
+  constructor(inventory=new Inventory()){
+    this.position = 0;
+    this.inventory = inventory;
     this.spriteA = [
     "•o•",
     "•|\\",
@@ -40,6 +41,11 @@ export default class Player {
       multiplier: 0,
     }
     this.updateArmour();
+
+    this.regen = {
+      base: 1,
+    }
+    this.updateRegen();
   }
   updateAttack(){
     this.attack.value = Math.floor(this.attack.base * (this.attack.multiplier + 1)) + this.attack.flat;
@@ -49,6 +55,9 @@ export default class Player {
   }
   updateArmour(){
     this.armour.value = Math.floor(this.armour.base * (this.armour.multiplier + 1)) + this.armour.flat;
+  }
+  updateRegen(){
+    this.regen.value = this.regen.base;
   }
   updateStat(statType){
     switch (statType){
@@ -60,6 +69,9 @@ export default class Player {
       break;
       case "armour":
       this.updateArmour()
+      break;
+      case "regen":
+      this.updateRegen();
       break;
     }
   }
@@ -117,6 +129,14 @@ export default class Player {
       this.updateStat(statType)
     }
     this.inventory.currentPassive = newPassive;
+  }
+  regenerateHealth(){
+    let newHealth = this.hp.current + this.regen.value;
+    if (newHealth > this.hp.max){
+      this.hp.current = this.hp.max;
+    } else{
+      this.hp.current = newHealth;
+    }
   }
 
 

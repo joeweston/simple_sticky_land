@@ -5,7 +5,7 @@ import Adventure from '@/vuex/gameMechanics/adventureMechanics/Adventure.js';
 class TestPlayer extends Player{
   constructor(){
     super();
-    this.attack = 10;
+    this.attack.value = 10;
     this.hp = { max: 100, current: 100 };
   }
 }
