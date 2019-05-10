@@ -5,7 +5,9 @@
       <options-component></options-component>
       <ascii-grid-component></ascii-grid-component>
     </div>
-    <button :disabled="!canAdventure" @click="goAdventure('cliffs')">goAdventure</button>
+    <button :disabled="!canAdventure" @click="goAdventure('fields')">fields</button>
+    <button :disabled="!canAdventure" @click="goAdventure('cliffs')">cliffs</button>
+    <button @click="fullHp">CHEAT</button>
     <inventory-component></inventory-component>
   </div>
 </template>
@@ -41,9 +43,13 @@ export default {
       return !this.getStillAdventuring && this.hpFull 
     }
   },
-  methods: mapActions([
-    "load","goAdventure","initialisePlayer",
-  ])
+  methods: {...mapActions([
+      "load","goAdventure","initialisePlayer",
+    ]),
+    fullHp(){
+      this.getPlayerHp.current = this.getPlayerHp.max;
+    }
+ }
 }
 </script>
 

@@ -5,7 +5,7 @@ export default class Inventory{
     this.currentArmour = "none";
     this.weapons = {
       fists: { owned: true, name: "fists", stats: { attack:{base: 10} } },
-      brokenBottle: {  owned: false, name: "broken bottle", stats: { attack:{base: 15} } }
+      brokenBottle: {  owned: false, name: "broken bottle", stats: { attack:{base: 15} } },
     }
     this.armours = {
       none: {owned: true, name: "none", stats:{}},
@@ -14,9 +14,13 @@ export default class Inventory{
     this.passives = {
       pigTrotters: {owned: false, name: "pig trotters", stats: {hp: {base: 13 } } },
       pieceOfCandy: {owned: false, name: "piece of candy", stats: {hp: {multiplier: 0.1 } } },
+      trollMeat: {owned: false, name: "troll meat", stats: {hp: {flat: 25 } } },
+      trollArms: {owned: false, name: "troll arms", stats: {attack: {flat: 5 } } },
+      trollEssence: {owned: false, name: "troll essence", stats: {regen: {base: 1 } } },
     }
     this.key = {
-
+      strangeMap: {owned: false, name: "strange map"},
+      gregorsNote: {owned: false, name: "Gregor's note"}
     }
   }
   hasItem(itemName){

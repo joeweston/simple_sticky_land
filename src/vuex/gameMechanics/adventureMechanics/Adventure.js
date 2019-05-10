@@ -9,13 +9,13 @@ export default class Adventure{
     this.stillAdventuring = true;
     this.alive = true;
     this.itemDrops = [];
+    this.goldDrops = 0;
     this.findCurrentEnemy();
   }
   resetAdventure(){
     this.area = this.area.nextArea;
     this.player.position = 0;
     this.findCurrentEnemy();
-    console.log(this)
   }
   playerMove(){
     this.area.player.position += 1;
@@ -29,6 +29,7 @@ export default class Adventure{
       if (itemDrop){
         this.getItem(itemDrop);
       }
+      this.getGoldDrop();
       this.area.enemyDie();
       this.findCurrentEnemy();
       return;
@@ -66,6 +67,7 @@ export default class Adventure{
       for (let item of this.itemDrops){
         this.player.obtainItem(item);
       }
+      this.player.inventory.gold += this.goldDrops;
       return this;
     }
     this.playerMove();
@@ -89,6 +91,9 @@ export default class Adventure{
   }
   getItem(itemName){
     this.itemDrops.push(itemName);
+  }
+  getGoldDrop(){
+    this.goldDrops += this.currentEnemy.goldDrop;
   }
 
 }

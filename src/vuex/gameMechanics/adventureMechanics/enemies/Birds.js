@@ -1,12 +1,9 @@
 import Enemy from './Enemy.js';
 import helperFunctions from '@/vuex/gameMechanics/helperFunctions.js';
 const weightedRandom =  x => helperFunctions.weightedRandom(x);
-let smallChestAscii = [ 
-    "•__•",
-    "[^^]"
-]
-export default class SmallChest extends Enemy{
+let birdsAscii = ["v•","•v"]
+export default class Birds extends Enemy{
   constructor(){
-    super(100, 0, smallChestAscii, "strangeMap", 100, 100);
+    super(300,1,birdsAscii, "pigTrotters", 20, 2);
   }
 }

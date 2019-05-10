@@ -16,6 +16,6 @@ let gregorAscii = [ '••,"",',
   'C____)' ]
 export default class Gregor extends Enemy{
   constructor(){
-    super(2000,4,gregorAscii);
+    super(2000,4,gregorAscii, "gregorsNote", 100, 400);
   }
 }

@@ -1,18 +1,38 @@
 <template>
   <div>
     <div>
+      <p>Gold: {{getGold}}</p>
+    </div>
+    <!--
+    <div>
       <h3>Weapons:</h3>
       <item-component name="fists" type="weapons"></item-component>
       <item-component name="brokenBottle" type="weapons"></item-component>
     </div>
+     -->
+    <div>
+      <h3>Weapons</h3>
+        <item-component
+        v-for="(item, name) in getInventory.weapons" :key="name"
+        :name="name" type="weapons"></item-component>
+    </div>
     <div>
       <h3>Armours:</h3>
-      <item-component name="cowSkin" type="armours"></item-component>
+        <item-component 
+        v-for="(item, name) in getInventory.armours" :key="name"
+        :name="name" type="armours"></item-component>
     </div>
     <div>
       <h3>Passives:</h3>
-      <item-component name="pigTrotters" type="passives"></item-component>
-      <item-component name="pieceOfCandy" type="passives"></item-component>
+        <item-component
+        v-for="(item, name) in getInventory.passives" :key="name"
+        :name="name" type="passives"></item-component>
+    </div>
+    <div>
+      <h3>Key:</h3>
+        <item-component
+        v-for="(item, name) in getInventory.key" :key="name"
+        :name="name" type="key"></item-component>
     </div>
   </div>
 
@@ -26,6 +46,13 @@ export default {
   components: {
     ItemComponent,
   },
+  computed: {...mapGetters([
+      'getInventory'
+    ]),
+    getGold(){
+      return this.getInventory.gold;
+    }
+  }
 
 }
 </script>
