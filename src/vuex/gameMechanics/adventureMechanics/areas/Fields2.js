@@ -7,8 +7,12 @@ import SmallChest from '../enemies/SmallChest.js'
 
 import Fields3 from './Fields3.js'
 
+import helperFunctions from '@/vuex/gameMechanics/helperFunctions.js';
+const weightedRandom =  x => helperFunctions.weightedRandom(x);
+
 export default class Fields2 extends Area{
   constructor(player){
+    let NextArea = weightedRandom([[Fields3, 50], [false, 50]] );
     super(
       player,
 [ '          ___                                               ',
@@ -36,7 +40,7 @@ export default class Fields2 extends Area{
         {common: Cow, uncommon: Man, rare: Pig, position: [6, 20]},
         {common: Pig, uncommon: Cow, rare: SmallChest, position: [45, 47]},
       ],
-      new Fields3(player),
+      NextArea ? new NextArea(player) : false,
       );
   }
 }

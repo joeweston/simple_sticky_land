@@ -35,7 +35,7 @@ export default class Fields3 extends Area{
       [
         {common: Birds, uncommon: Birds, rare: Birds, position: [25, 25]},
       ],
-      new Fields4(player)
+      NextArea ? new NextArea(player) : false,
       );
   }
 }

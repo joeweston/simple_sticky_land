@@ -3,13 +3,14 @@
     <div>
       <p>Gold: {{getGold}}</p>
     </div>
-    <!--
     <div>
-      <h3>Weapons:</h3>
-      <item-component name="fists" type="weapons"></item-component>
-      <item-component name="brokenBottle" type="weapons"></item-component>
+      <h3>Selcted weapon</h3>
+      <weapon-select-component></weapon-select-component>
     </div>
-     -->
+    <div>
+      <h3>Selcted armour</h3>
+      <armour-select-component></armour-select-component>
+    </div>
     <div>
       <h3>Weapons</h3>
         <item-component
@@ -42,9 +43,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import ItemComponent from './ItemComponent.vue';
+import WeaponSelectComponent from './WeaponSelectComponent.vue';
+import ArmourSelectComponent from './ArmourSelectComponent.vue';
 export default {
   components: {
-    ItemComponent,
+    ItemComponent, WeaponSelectComponent, ArmourSelectComponent
   },
   computed: {...mapGetters([
       'getInventory'

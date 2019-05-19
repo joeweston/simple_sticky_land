@@ -14,23 +14,29 @@ export default{
     regenTick(state);
   },
   goAdventure(state, areaName){
-  switch (areaName){
-    case "fields":
-    state.currentAdventure = new Adventure(new Fields(state.player));
-    break;
-    case "cliffs":{
-    state.currentAdventure = new Adventure(new Cliffs(state.player));
+    switch (areaName){
+      case "fields":
+      state.currentAdventure = new Adventure(new Fields(state.player));
+      break;
+      case "cliffs":{
+      state.currentAdventure = new Adventure(new Cliffs(state.player));
+      }
+      break;
+      case "cliffs2":{
+      state.currentAdventure = new Adventure(new Cliffs2(state.player));
+      }
+      break;
     }
-    break;
-    case "cliffs2":{
-    state.currentAdventure = new Adventure(new Cliffs2(state.player));
-    }
-    break;
+    state.adventureInterval = setInterval(function(){
+      adventureTick(state);
+    }, 50)
+  },
+  changeWeapon(state, newWeapon){
+    state.player.changeWeapon(newWeapon);
+  },
+  changeArmour(state, newArmour){
+    state.player.changeArmour(newArmour);
   }
-  state.adventureInterval = setInterval(function(){
-    adventureTick(state);
-  }, 50)
-}
 
 }
 

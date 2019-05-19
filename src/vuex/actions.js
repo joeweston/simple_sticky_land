@@ -13,4 +13,10 @@ export default {
   initialisePlayer({commit}){
     commit('initialisePlayer');
   },
+  changeWeapon({commit},newWeapon){
+    commit('changeWeapon', newWeapon);
+  },
+  changeArmour({commit},newArmour){
+    commit('changeArmour', newArmour);
+  }
 }
