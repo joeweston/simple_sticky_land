@@ -2,6 +2,7 @@
   <select @change="selectorChanged">
     <option
       v-for="(item) in ownedArmours" :key="item"  :value="item"
+      :selected="isEquipped(item)"
       >
       {{getItemName(item)}}
     </option> 
@@ -30,6 +31,9 @@ export default {
     },
     selectorChanged(event){
       this.changeArmour(event.target.value);
+    },
+    isEquipped(item){
+      return this.getInventory.currentArmour === item;
     }
 
   }

@@ -13,9 +13,6 @@ export default {
       'getInventory'
     ]),
     hasItem(){
-      if (this.getItemName === "none"){
-        return false;
-      }
       return this.getInventory[this.type][this.name].owned
     },
     getItemName(){

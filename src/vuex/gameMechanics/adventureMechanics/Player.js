@@ -80,6 +80,13 @@ export default class Player {
     if (itemType === "passives"){
       this.obtainPassive(item);
     }
+    return item;
+  }
+  obtainItems(items){
+    for(let item of items){
+      this.obtainItem(item);
+    }
+    return items;
   }
   changeWeapon(newWeapon){
     let oldWeaponStats = this.inventory.weapons[this.inventory.currentWeapon].stats

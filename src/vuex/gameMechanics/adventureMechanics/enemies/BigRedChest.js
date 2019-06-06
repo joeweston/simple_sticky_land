@@ -8,6 +8,6 @@ let bigRedChestAscii = [ '••••••___________•••••',
   '|____________________|' ]
 export default class BigRedChest extends Enemy{
   constructor(){
-    super(800,0,bigRedChestAscii, "pigTrotters", 20, 2);
+    super(800,0,bigRedChestAscii, "melvinsBarnKey", 100, 100);
   }
 }

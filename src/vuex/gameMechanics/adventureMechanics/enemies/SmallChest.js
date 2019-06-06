@@ -7,6 +7,6 @@ let smallChestAscii = [
 ]
 export default class SmallChest extends Enemy{
   constructor(){
-    super(100, 0, smallChestAscii, "strangeMap", 100, 100);
+    super(100, 0, smallChestAscii, "cliffsMap", 100, 100);
   }
 }

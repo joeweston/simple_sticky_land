@@ -4,6 +4,6 @@ const weightedRandom =  x => helperFunctions.weightedRandom(x);
 let blokeAscii = [ '••O•••', '•/|\\••', '•\\|•\\•', '•/"\\••', '•\\••\\•' ];
 export default class Bloke extends Enemy{
   constructor(){
-    super(weightedRandom([[100,5],[120,5]]),4,blokeAscii, "brokenBottle", 20,5);
+    super(weightedRandom([[100,5],[120,5]]),4,blokeAscii, "brokenBottle", 40,5);
   }
 }

@@ -37,9 +37,10 @@ export default {
   padding: 5px 0;
   background-color: #eee;
   outline: 2px solid black;
-  height: 30px;
+  height: 40px;
   display: flex;
   justify-content: center;
+  margin: 0 2px 20px;
 }
 #hp-bar, #hp-bar-text{
   position: absolute;

@@ -18,5 +18,20 @@ export default {
   },
   changeArmour({commit},newArmour){
     commit('changeArmour', newArmour);
-  }
+  },
+  initialiseOfferings({commit}){
+    commit('initialiseOfferings');
+  },
+  donateRed({commit}){
+    commit('donateRed');
+  },
+  donateGreen({commit}){
+    commit('donateGreen');
+  },
+  donateBlue({commit}){
+    commit('donateBlue');
+  },
+  gainItems({commit}, items){
+    commit('gainItems', items);
+  },
 }

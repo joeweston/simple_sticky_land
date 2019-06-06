@@ -14,6 +14,8 @@ const state = {
   player:{
     hp: {max: null, current: null},
     inventory: new Inventory(),
+    attack:{value: null},
+    armour:{value: null}
   },
   currentAdventure: {
     stillAdventuring: false,
@@ -27,6 +29,13 @@ const state = {
       attack: null,
     },
   },
+  offerings:{
+    red: {favour: 0},
+    green: {favour: 0},
+    blue: {favour: 0},
+  },
+
+  log:["","","",""],
 
   persistantState:{
   }

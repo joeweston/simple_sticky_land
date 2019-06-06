@@ -1,9 +1,9 @@
 import Enemy from './Enemy.js';
 import helperFunctions from '@/vuex/gameMechanics/helperFunctions.js';
 const weightedRandom =  x => helperFunctions.weightedRandom(x);
-let birdsAscii = ["v•","•v"]
-export default class Birds extends Enemy{
+let melvinAscii = ["•"];
+export default class BuffMelvin extends Enemy{
   constructor(){
-    super(300,1,birdsAscii, "birdBeak", 20, 2);
+    super(1400,4,melvinAscii, "gregorsNote", 0, 1);
   }
 }

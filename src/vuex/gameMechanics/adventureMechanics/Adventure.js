@@ -11,6 +11,7 @@ export default class Adventure{
     this.itemDrops = [];
     this.goldDrops = 0;
     this.findCurrentEnemy();
+    this.log = false; //false if no message
   }
   resetAdventure(){
     this.area = this.area.nextArea;
@@ -26,10 +27,13 @@ export default class Adventure{
     if (this.currentEnemy.hp <= 0 ){
       this.fighting = false;
       let itemDrop = this.getItemDrop();
+      this.getGoldDrop();
+      this.log = `${this.currentEnemy.name} has been defeated, you get ${this.currentEnemy.goldDrop} gold.`
       if (itemDrop){
         this.getItem(itemDrop);
+        let itemString = this.itemDrops[this.itemDrops.length - 1];
+        this.log += `  You found the ${this.player.inventory.getItemName(itemString)}!`;
       }
-      this.getGoldDrop();
       this.area.enemyDie();
       this.findCurrentEnemy();
       return;
@@ -39,7 +43,9 @@ export default class Adventure{
     }
     this.player.hp.current -= (this.currentEnemy.attack - this.player.armour.value);
     if ( this.player.hp.current <= 0){
+      this.log = "You have been defeated!";
       this.stillAdventuring = false;
+      this.player.position = 0;
       return;
     }
   }
@@ -51,28 +57,30 @@ export default class Adventure{
     }
   }
   tick(){
+    this.log = false; //Old message persists
     if (this.fighting){
       this.advanceFight();
       return this;
     }
     if (this.player.position +2 ===  this.area.positions.length) {
       if (this.area.nextArea){  //another area after so load new
-        //this.area = this.area.nextArea;
-        //this.player.position = 0;
         this.resetAdventure();
         return;
       }
-
+      //adventure succesfully finished
       this.stillAdventuring = false;
+      this.player.position = 0;
       for (let item of this.itemDrops){
         this.player.obtainItem(item);
       }
       this.player.inventory.gold += this.goldDrops;
+      this.log = "You completed the adventure."
       return this;
     }
     this.playerMove();
     if (this.currentEnemy && this.area.enemies[0][1] === this.player.position + 3){
       this.fighting = true;
+      this.log = `You are fighting ${this.currentEnemy.name}`;
     }
     return this;
   }

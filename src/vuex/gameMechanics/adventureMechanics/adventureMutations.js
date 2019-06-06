@@ -2,7 +2,7 @@ import Player from '@/vuex/gameMechanics/adventureMechanics/Player.js'
 import Adventure from '@/vuex/gameMechanics/adventureMechanics/Adventure.js';
 import Fields from '@/vuex/gameMechanics/adventureMechanics/areas/Fields.js';
 import Cliffs from '@/vuex/gameMechanics/adventureMechanics/areas/Cliffs.js';
-import Cliffs2 from '@/vuex/gameMechanics/adventureMechanics/areas/Cliffs2.js';
+import MelvinsBarn from '@/vuex/gameMechanics/adventureMechanics/areas/MelvinsBarn.js';
 export default{
   initialisePlayer(state){
     if(state.persistantState.hasOwnProperty("inventory")){
@@ -11,9 +11,10 @@ export default{
     else {
       state.player = new Player();
     }
-    regenTick(state);
+    startRegen(state);
   },
   goAdventure(state, areaName){
+    clearInterval(state.regenInterval);
     switch (areaName){
       case "fields":
       state.currentAdventure = new Adventure(new Fields(state.player));
@@ -22,8 +23,8 @@ export default{
       state.currentAdventure = new Adventure(new Cliffs(state.player));
       }
       break;
-      case "cliffs2":{
-      state.currentAdventure = new Adventure(new Cliffs2(state.player));
+      case "melvinsBarn":{
+      state.currentAdventure = new Adventure(new MelvinsBarn(state.player));
       }
       break;
     }
@@ -41,19 +42,22 @@ export default{
 }
 
 function adventureTick(state){
-  clearInterval(state.regenInterval);
   state.currentAdventure.tick();
   state.renderedAscii = state.currentAdventure.area.renderedAscii;
+  if (state.currentAdventure.log){
+    state.log.push(state.currentAdventure.log);
+    state.log.shift();
+  }
   if( !state.currentAdventure.stillAdventuring ){
     clearInterval(state.adventureInterval);
-    regenTick(state);
+    startRegen(state);
   }
 }
 function regenTick(state){
-  state.regenInterval = setInterval(function(){
-    state.player.regenerateHealth();
-  }, 500);
+  state.player.regenerateHealth();
 }
-function updateStoreState(state){
-
+function startRegen(state){
+  state.regenInterval = setInterval(function(){
+    regenTick(state)
+  }, 500);
 }

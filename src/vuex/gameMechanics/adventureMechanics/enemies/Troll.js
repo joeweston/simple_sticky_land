@@ -10,6 +10,6 @@ let trollAscii = [ "'.__.'•",
   'c_) C_)' ]
 export default class Troll extends Enemy{
   constructor(){
-    super(weightedRandom([[100,5],[200,5]]),5,trollAscii, "trollArms", 20, 60);
+    super(weightedRandom([[200,5],[400,5]]),6,trollAscii, "trollArms", 20, 60);
   }
 }

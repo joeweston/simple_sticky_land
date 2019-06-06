@@ -1,9 +1,16 @@
 import Area from './Area.js';
 import Troll from '../enemies/Troll.js'
+import Trolly from '../enemies/Trolly.js'
 import LesserTroll from '../enemies/LesserTroll.js'
 import Trollo from '../enemies/Trollo.js'
+
+import Cliffs3 from './Cliffs3.js'
+
+import helperFunctions from '@/vuex/gameMechanics/helperFunctions.js';
+const weightedRandom =  x => helperFunctions.weightedRandom(x);
 export default class Cliffs2 extends Area{
   constructor(player){
+    let NextArea = weightedRandom([[Cliffs3, 50], [false, 50]] );
     super(
       player,
 [ '                                                            ',
@@ -28,9 +35,10 @@ export default class Cliffs2 extends Area{
         [50, 3],[51, 3],[52, 3],[53, 3],[54, 3],[55, 3],[56, 3],[57, 3],[58, 3],[59, 3],
       ],
       [
-        {common: LesserTroll, uncommon: Troll, rare: Troll, position: [23, 35]},
+        {common: LesserTroll, uncommon: Troll, rare: Trolly, position: [23, 35]},
         {common: LesserTroll, uncommon: Trollo, rare: Trollo, position: [45, 53]},
-      ]
+      ],
+      NextArea ? new NextArea(player) : false,
       );
   }
 }

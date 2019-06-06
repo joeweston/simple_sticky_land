@@ -2,6 +2,7 @@
   <select @change="selectorChanged">
     <option
       v-for="(item) in ownedWeapons" :key="item"  :value="item"
+      :selected="isEquipped(item)"
       >
       {{getItemName(item)}}
     </option>
@@ -19,7 +20,7 @@ export default {
       return Object.keys(this.getInventory.weapons).filter((item)=>{
         return this.getInventory.weapons[item].owned;
       });
-    }
+    },
   },
   methods:{
     ...mapActions([
@@ -30,6 +31,9 @@ export default {
     },
     selectorChanged(event){
       this.changeWeapon(event.target.value);
+    },
+    isEquipped(item){
+      return this.getInventory.currentWeapon === item;
     }
 
   }
@@ -40,4 +44,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
+
 </style>
+
+
+
+
